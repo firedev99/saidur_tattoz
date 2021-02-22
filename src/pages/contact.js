@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from "../components/seo"
 import { useStaticQuery } from "gatsby";
 import Img from 'gatsby-image'; 
 import Layout from '../components/layout/index';
@@ -19,6 +20,7 @@ export default function Contact() {
   `)
     return (
         <Layout>
+        <SEO title="Contact" />
             <Frame>
                 <BannerSection>
                     <Img fluid={data.placeholderImage.childImageSharp.fluid} />

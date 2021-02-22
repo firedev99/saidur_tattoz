@@ -14,6 +14,7 @@ export const Frame = styled.div`
 
 export const Video = styled.div`
     @media(max-width: 468px) {
+        margin-top: 2.5rem;
         iframe {
             width: 300px;
         }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Img from "gatsby-image";
+import SEO from "../components/seo"
 import { useStaticQuery } from "gatsby";
 import { Layout } from "../components"
 import { Frame, Images } from "../styles/collectionStyles";
@@ -46,6 +47,7 @@ export default function Collection() {
   `)
     return (
         <Layout>
+        <SEO title="Collections" />
             <Frame>
                 <Images>
                     <Img fixed={data.src1.childImageSharp.fixed} />
