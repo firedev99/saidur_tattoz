@@ -1,22 +1,40 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from "react";
+import { useStaticQuery } from "gatsby";
 
-import Layout from "../components/layout"
-import Image from "../components/image"
+import { Layout } from "../components";
+import Img from "gatsby-image";
 import SEO from "../components/seo"
+import { Frame, Heading, Background } from "../styles/homeStyles";
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+export default function IndexPage(){
+  const data = useStaticQuery(graphql`
+    query homeQuery {
+      site {
+        siteMetadata {
+          description
+        }
+      }
+      bg: file(relativePath: { eq: "bg.jpg" }) {
+        childImageSharp {
+          fixed(width: 300) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
+  return(
+    <Layout>
+      <SEO title="Home" />
+      <Frame>
+        <Heading>
+          <h1>{data.site.siteMetadata?.description}</h1>
+        </Heading>
+        <Background>
+          <Img className="bg" fixed={data.bg.childImageSharp.fixed} />
+        </Background>
+      </Frame>
+    </Layout>
+  )
+}
 
-export default IndexPage
